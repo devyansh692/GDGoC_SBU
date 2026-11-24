@@ -1,10 +1,9 @@
-
 "use client";
 
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowUpRight, CalendarDays, Clock, MapPin, Image as ImageIcon } from "lucide-react";
+import { ArrowUpRight, CalendarDays, Clock, Video, Image as ImageIcon } from "lucide-react";
 
 const COMMUNITY_URL = "https://gdg.community.dev/gdg-on-campus-sarala-birla-university-ranchi-india/";
 
@@ -12,22 +11,24 @@ const COMMUNITY_URL = "https://gdg.community.dev/gdg-on-campus-sarala-birla-univ
 // When the image loads, the banner uses the image's OWN ratio (nothing is cropped).
 const PLACEHOLDER_RATIO = "3 / 1";
 
-// ---- EDIT YOUR EVENT DETAILS HERE (this is a demo event) ----
+// ---- EDIT YOUR EVENT DETAILS HERE ----
 const events = [
   {
-    id: "demo-event",
+    id: "build-with-ai-bootcamp",
     status: "Upcoming",
-    tag: "Bootcamp",
-    title: "Build with AI Bootcamp",
+    tag: "Online Bootcamp",
+    title: "Build With AI Bootcamp",
     description: "The 'Build With AI Bootcamp' at Sarala Birla University invites enthusiasts to explore Google Antigravity and AI Studio with Google Developer Experts. Participants will learn to autonomously plan, test, and deploy code. Enter curious and leave with a creation of your own design.",
+    weekday: "Wednesday",
     day: "25",
     month: "Nov",
     year: "2026",
-    time: "9:00 AM – 12:00 PM",
-    venue: "GD Birla, Sarala Birla University",
+    time: "7:00 PM – 9:00 PM",
+    timezone: "Asia/Kolkata (IST)",
+    venue: "Online · Google Meet",
     banner: "/events/demo-event-banner.jpg",
-    cta: "Register now",
-    link: COMMUNITY_URL,
+    cta: "Join on Google Meet",
+    link: "https://meet.google.com/ejv-stjd-ond",
   },
 ];
 
@@ -159,14 +160,17 @@ export function EventsSection() {
                 <div className="flex flex-col gap-4 md:items-end">
                   <div className="ev-meta flex items-center gap-3 text-sm">
                     <CalendarDays size={18} className="text-[#4285f4]" aria-hidden="true" />
-                    <span>{ev.day} {ev.month} {ev.year}</span>
+                    <span>{ev.weekday}, {ev.day} {ev.month} {ev.year}</span>
                   </div>
                   <div className="ev-meta flex items-center gap-3 text-sm">
                     <Clock size={18} className="text-[#34a853]" aria-hidden="true" />
-                    <span>{ev.time}</span>
+                    <span>
+                      {ev.time}
+                      <span className="block text-xs text-[var(--muted)] md:text-right">{ev.timezone}</span>
+                    </span>
                   </div>
                   <div className="ev-meta flex items-center gap-3 text-sm">
-                    <MapPin size={18} className="text-[#e5402f]" aria-hidden="true" />
+                    <Video size={18} className="text-[#e5402f]" aria-hidden="true" />
                     <span>{ev.venue}</span>
                   </div>
                   <a href={ev.link} target="_blank" rel="noreferrer" className="ev-cta button-primary mt-2 w-fit">
